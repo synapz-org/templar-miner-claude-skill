@@ -1,6 +1,6 @@
 # Templar Miner Claude Skill
 
-A Claude Code skill for expert-level setup, optimization, and management of Templar AI miners on Bittensor Subnet 3 (netuid 268).
+A Claude Code skill for expert-level setup, optimization, and management of Templar AI miners on Bittensor Subnet 3 (netuid 3).
 
 ## Overview
 

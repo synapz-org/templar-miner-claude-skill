@@ -1,13 +1,13 @@
 ---
 name: templar-miner-claude-skill
-description: This skill should be used when setting up, optimizing, or managing Templar AI miners on Bittensor Subnet 3 (netuid 268). Use it for tasks involving miner configuration, performance optimization, troubleshooting gradient scoring issues, managing Bittensor wallets with btcli, monitoring miner metrics, or strategizing to achieve top miner ranking in the Templar decentralized training network.
+description: This skill should be used when setting up, optimizing, or managing Templar AI miners on Bittensor Subnet 3 (netuid 3). Use it for tasks involving miner configuration, performance optimization, troubleshooting gradient scoring issues, managing Bittensor wallets with btcli, monitoring miner metrics, or strategizing to achieve top miner ranking in the Templar decentralized training network.
 ---
 
 # Templar Miner Claude Skill
 
 ## Overview
 
-Set up, optimize, and manage Templar AI miners to achieve top performance in the Templar decentralized training network (Bittensor Subnet 3, netuid 268). This skill provides expert guidance on miner operations, from initial wallet setup through advanced optimization strategies.
+Set up, optimize, and manage Templar AI miners to achieve top performance in the Templar decentralized training network (Bittensor Subnet 3, netuid 3). This skill provides expert guidance on miner operations, from initial wallet setup through advanced optimization strategies.
 
 ## Core Capabilities
 

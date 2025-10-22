@@ -194,7 +194,7 @@ btcli subnet register \
   --netuid 3 \
   --subtensor.network finney
 
-# For Templar (Subnet 268, netuid 3)
+# For Templar (Subnet 3, netuid 3)
 btcli subnet register \
   --wallet.name default \
   --wallet.hotkey miner \
