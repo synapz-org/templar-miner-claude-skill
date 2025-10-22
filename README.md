@@ -83,14 +83,26 @@ Detailed reference documentation loaded as needed:
 
 ## System Requirements
 
-The skill helps you understand and meet these Templar miner requirements:
+### For Competitive Templar Mining
 
-- **Minimum**: 1x H100 GPU (80GB VRAM)
-- **Recommended**: 2-4x H100 or H200 GPUs
-- **CPU**: 32+ cores
-- **RAM**: 256+ GB
-- **Storage**: 500GB+ SSD
-- **Network**: 1Gbps+ bandwidth
+- **Minimum GPUs**: 8x H200 (141GB VRAM each)
+- **CPU**: 64+ cores
+- **RAM**: 512+ GB
+- **Storage**: 1TB+ NVMe SSD
+- **Network**: 10Gbps+ bandwidth
+
+**Note**: Smaller configurations are unlikely to be competitive for rewards in the Templar network.
+
+### GPU Rental Option
+
+Don't have 8x H200 GPUs? Rent them via **Basilica's decentralized compute marketplace**:
+
+- Install the [Basilica CLI Claude Skill](https://github.com/synapz-org/basilica-cli-claude-skill)
+- Seamlessly integrates with this Templar skill
+- Rent H200 GPUs on-demand with `basilica up h200 --gpu-count 8`
+- Claude can coordinate both skills together automatically
+
+See the SKILL.md **GPU Rental via Basilica** section for complete workflows.
 
 ## Resources
 

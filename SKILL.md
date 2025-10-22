@@ -56,12 +56,72 @@ Set up, optimize, and manage Templar AI miners to achieve top performance in the
    ```
 
 **Hardware Requirements**:
-- Minimum: 1x H100 GPU (80GB VRAM)
-- Recommended: 2-4x H100 or H200 GPUs
-- CPU: 32+ cores
-- RAM: 256+ GB
-- Storage: 500GB+ SSD
-- Network: 1Gbps+ bandwidth
+- **Minimum for Competitive Mining**: 8x H200 GPUs (141GB VRAM each)
+- CPU: 64+ cores
+- RAM: 512+ GB
+- Storage: 1TB+ NVMe SSD
+- Network: 10Gbps+ bandwidth
+
+**Note**: Smaller configurations (4x H100, etc.) are unlikely to be competitive for rewards. For GPU rentals, see the **GPU Rental via Basilica** section below.
+
+**GPU Rental via Basilica**:
+
+For those without access to 8x H200 GPUs, rent them through Basilica's decentralized compute marketplace. The `basilica-cli-helper` Claude skill (https://github.com/synapz-org/basilica-cli-claude-skill) integrates seamlessly with this Templar skill.
+
+**Quick Basilica Workflow**:
+
+1. **Check Available GPUs**:
+   ```bash
+   basilica ls
+   basilica price --gpu h200  # Check H200 pricing
+   ```
+
+2. **Rent GPUs**:
+   ```bash
+   basilica up h200 --gpu-count 8
+   ```
+
+3. **Check Active Rentals**:
+   ```bash
+   basilica ps  # Note the rental UID
+   ```
+
+4. **Setup Miner on Rental**:
+   ```bash
+   # Copy setup script to rental
+   basilica cp scripts/setup_miner_env.sh [rental-id]:/root/
+
+   # Execute setup on rental
+   basilica exec --target [rental-id] "bash /root/setup_miner_env.sh"
+
+   # Copy environment file after editing
+   basilica cp .env [rental-id]:/root/templar/
+
+   # Install Templar
+   basilica exec --target [rental-id] "git clone https://github.com/one-covenant/templar && cd templar && pip install -e ."
+   ```
+
+5. **Launch Miner on Rental**:
+   ```bash
+   basilica exec --target [rental-id] "cd /root/templar && python neurons/miner.py --wallet.name default --wallet.hotkey miner --netuid 3 --device cuda"
+   ```
+
+6. **Monitor and Manage**:
+   ```bash
+   # Copy logs back
+   basilica cp [rental-id]:/root/templar/logs/ ./local-logs/
+
+   # Terminate when done
+   basilica down [rental-id]
+   ```
+
+**Cost Optimization Tips**:
+- Monitor Basilica pricing fluctuations with `basilica price`
+- Use `basilica ps` to track runtime and costs
+- Set up automated cost alerts
+- Test on smaller GPU counts first before scaling to 8x H200
+
+**Integration Note**: When using both skills together, Claude can automatically coordinate between Templar mining operations and Basilica GPU rentals. Simply ask: "Help me set up a Templar miner on rented Basilica GPUs."
 
 ### 2. PERFORMANCE OPTIMIZATION
 
