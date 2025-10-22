@@ -104,6 +104,102 @@ Don't have 8x H200 GPUs? Rent them via **Basilica's decentralized compute market
 
 See the SKILL.md **GPU Rental via Basilica** section for complete workflows.
 
+## Setup Prerequisites Checklist
+
+Before renting GPUs and launching your Templar miner, complete these prerequisites:
+
+### Critical Requirements (Must Have)
+
+#### 1. Cloudflare R2 Buckets (TWO buckets required)
+
+**A. Your Personal Gradient Bucket**
+- [ ] Create Cloudflare account
+- [ ] Create R2 bucket for your gradients (e.g., `templar-miner-yourname`)
+- [ ] Generate READ API token and save credentials
+- [ ] Generate WRITE API token and save credentials
+- [ ] Note your Cloudflare Account ID
+
+**B. Templar Shared Dataset Bucket**
+- [ ] Join Templar Discord/GitHub community
+- [ ] Request dataset bucket access credentials from Templar team
+- [ ] Save provided credentials
+
+#### 2. HuggingFace
+- [ ] Create account at https://huggingface.co
+- [ ] Generate READ access token (Settings → Access Tokens)
+- [ ] Accept Gemma-3 model license agreement
+
+#### 3. Bittensor Wallet Registration
+- [ ] Choose coldkey/hotkey pair for mining
+- [ ] Check registration status: `btcli wallet overview --wallet.name [name] --wallet.hotkey [hotkey] --netuid 3`
+- [ ] If not registered, register to Subnet 3:
+  ```bash
+  btcli subnet register --wallet.name [name] --wallet.hotkey [hotkey] --netuid 3 --subtensor.network finney
+  ```
+
+### Highly Recommended
+
+#### 4. Weights & Biases (WandB)
+- [ ] Create account at https://wandb.ai
+- [ ] Copy API key (User Settings → API Keys)
+- [ ] Create project for monitoring (e.g., "templar-mining")
+
+**Benefits**: Real-time loss curves, throughput, gather success rate, GPU monitoring
+
+### Optional
+
+#### 5. InfluxDB (Time-Series Metrics)
+- [ ] Request token from Templar team OR set up your own InfluxDB Cloud instance
+
+### Environment Variables Required
+
+Create a `.env` file with all credentials:
+
+```bash
+# Hugging Face
+HF_TOKEN=your_token_here
+
+# Weights & Biases (optional but recommended)
+WANDB_API_KEY=your_key_here
+WANDB_PROJECT=templar-mining
+WANDB_ENTITY=your_username
+
+# InfluxDB (optional)
+INFLUXDB_TOKEN=your_token_here
+
+# R2 Gradient Bucket (YOUR bucket)
+R2_GRADIENTS_ACCOUNT_ID=your_account_id
+R2_GRADIENTS_BUCKET_NAME=your_bucket_name
+R2_GRADIENTS_READ_ACCESS_KEY_ID=your_read_key
+R2_GRADIENTS_READ_SECRET_ACCESS_KEY=your_read_secret
+R2_GRADIENTS_WRITE_ACCESS_KEY_ID=your_write_key
+R2_GRADIENTS_WRITE_SECRET_ACCESS_KEY=your_write_secret
+
+# R2 Dataset Bucket (Templar shared - get from team)
+R2_DATASET_ACCOUNT_ID=provided_by_team
+R2_DATASET_BUCKET_NAME=provided_by_team
+R2_DATASET_READ_ACCESS_KEY_ID=provided_by_team
+R2_DATASET_READ_SECRET_ACCESS_KEY=provided_by_team
+DATASET_BINS_PATH=tokenized/
+
+# Bittensor Wallet
+WALLET_NAME=your_wallet
+WALLET_HOTKEY=your_hotkey
+NETWORK=finney
+NETUID=3
+```
+
+### Pre-Flight Verification
+
+Before renting GPUs, verify:
+- [ ] All environment variables documented and saved securely
+- [ ] R2 buckets created and accessible
+- [ ] Dataset bucket credentials obtained from Templar team
+- [ ] Bittensor wallet registered to Subnet 3
+- [ ] WandB project created (if using)
+
+**Most Important**: Contact the Templar team to get shared dataset bucket credentials - this is the biggest blocker for new miners.
+
 ## Resources
 
 - **Templar GitHub**: https://github.com/one-covenant/templar
